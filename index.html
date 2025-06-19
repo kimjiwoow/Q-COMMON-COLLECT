@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>토론방</title>
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background-color: #FFFF00;
+      font-family: 'Pretendard', sans-serif;
+      text-align: center;
+      position: relative;
+    }
+
+    .home-icon {
+      position: fixed;
+      right: 40px;
+      top: 22px;
+      width: 24px;
+      cursor: pointer;
+    }
+
+    .header {
+      margin-top: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .logo {
+      width: 52px;
+      height: 52px;
+    }
+
+    .title {
+      font-size: 36px;
+      font-weight: bold;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      margin-top: 80px;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      background-color: #fffdf5;
+      border: 0.2px solid #000;
+      border-radius: 20px;
+      padding: 30px 15px;
+      width: 220px;
+      height: 280px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      cursor: pointer;
+      transition: box-shadow 0.2s ease;
+    }
+
+    .card.selected {
+      box-shadow: 0 0 0 4px lime;
+    }
+
+    .card button {
+      background-color: #FFFF66;
+      border: 0.2px solid #000;
+      padding: 10px 20px;
+      font-size: 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .images-wrapper {
+      position: relative;
+      width: 150px;
+      height: 130px;
+    }
+
+    .images-wrapper img {
+      position: absolute;
+      width: 36px;
+      height: auto;
+    }
+
+    .pair2 img:nth-child(1) { top: 30px; left: 20px; }
+    .pair2 img:nth-child(2) { top: 30px; left: 85px; }
+
+    .pair3 img:nth-child(1) { top: 10px; left: 55px; }
+    .pair3 img:nth-child(2) { top: 60px; left: 20px; }
+    .pair3 img:nth-child(3) { top: 60px; left: 90px; }
+
+    .pair6 {
+      width: 160px;
+      height: 140px;
+    }
+
+    .pair6 img {
+      width: 34px;
+    }
+
+    .pair6 img:nth-child(1) { top: 0;    left: 60px; }
+    .pair6 img:nth-child(2) { top: 30px; left: 15px; }
+    .pair6 img:nth-child(3) { top: 30px; left: 105px; }
+    .pair6 img:nth-child(4) { top: 70px; left: 10px; }
+    .pair6 img:nth-child(5) { top: 70px; left: 110px; }
+    .pair6 img:nth-child(6) { top: 100px; left: 60px; }
+
+    .hit-tag {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background-color: #39FF14;
+      color: #FFFF00;
+      font-size: 0.6rem;
+      font-weight: bold;
+      padding: 4px 8px;
+      border-radius: 5px;
+      border: 1px solid #000;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0.1; }
+    }
+
+    .enter-btn {
+      margin-top: 80px;
+      padding: 14px 32px;
+      background: white;
+      border: 2px solid black;
+      border-radius: 10px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .enter-btn:hover {
+      background-color: #00FF15;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 홈 버튼 -->
+  <a href="https://kimjiwoow.github.io/Q-common/">
+    <img src="https://i.imgur.com/qTjgYrU.png" class="home-icon" alt="홈버튼">
+  </a>
+
+  <div class="header">
+    <img src="https://i.imgur.com/Te8xXqU.png" class="logo" alt="토론방 로고">
+    <span class="title">토론방</span>
+  </div>
+
+  <div class="container">
+    <!-- 2인 -->
+    <div class="card" onclick="selectCard(this)">
+      <button>2인</button>
+      <div class="images-wrapper pair2">
+        <img src="https://i.imgur.com/5RJeHeR.png" alt="">
+        <img src="https://i.imgur.com/5RJeHeR.png" alt="">
+      </div>
+    </div>
+
+    <!-- 3~5인 -->
+    <div class="card" onclick="selectCard(this)">
+      <div class="hit-tag">HIT</div>
+      <button>3인 ~ 5인</button>
+      <div class="images-wrapper pair3">
+        <img src="https://i.imgur.com/5RJeHeR.png" alt="">
+        <img src="https://i.imgur.com/5RJeHeR.png" alt="">
+        <img src="https://i.imgur.com/5RJeHeR.png" alt="">
+      </div>
+    </div>
+
+    <!-- 6~7인 -->
+    <div class="card" onclick="selectCard(this)">
+      <button>6인 ~ 7인</button>
+      <div class="images-wrapper pair6">
+        <img src="https://i.imgur.com/5RJeHeR.png" alt="">
+        <img src="https://i.imgur.com/5RJeHeR.png" alt="">
+        <img src="https://i.imgur.com/5RJeHeR.png" alt="">
+        <img src="https://i.imgur.com/5RJeHeR.png" alt="">
+        <img src="https://i.imgur.com/5RJeHeR.png" alt="">
+        <img src="https://i.imgur.com/5RJeHeR.png" alt="">
+      </div>
+    </div>
+  </div>
+
+  <!-- 입장하기 버튼 -->
+  <button class="enter-btn" onclick="enterRoom()">입장하기</button>
+
+  <script>
+    function selectCard(clickedCard) {
+      document.querySelectorAll('.card').forEach(card => {
+        card.classList.remove('selected');
+      });
+      clickedCard.classList.add('selected');
+    }
+
+    function enterRoom() {
+      const selectedCard = document.querySelector('.card.selected');
+      if (!selectedCard) {
+        alert("먼저 방을 선택해주세요.");
+        return;
+      }
+
+      const buttonText = selectedCard.querySelector("button").textContent.trim();
+      if (buttonText.includes("3인")) {
+        // 실제 이동할 링크로 교체
+        location.href = "https://example.com";
+      } else {
+        alert("⚠️ 준비중입니다.\n3~5인 방을 이용해 주세요!");
+      }
+    }
+  </script>
+
+</body>
+</html>
